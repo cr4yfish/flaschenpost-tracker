@@ -52,10 +52,17 @@ export default async function handler(req, res) {
     const vilsaWrapper = await page.$('.products_list_vue_container > div:nth-child(10) > div > div');
 
     const petWrapper = await vilsaWrapper.$(".products_list_vue_container > div:nth-child(10) > div > div > div:nth-child(2)");
-    const PET_price = await petWrapper.$eval('.fp_article_price', (el) => el.innerText);
+    let PET_price = await petWrapper.$eval('.fp_article_price', (el) => el.innerText);
 
     const glasWrapper = await vilsaWrapper.$(".products_list_vue_container > div:nth-child(10) > div > div > div:nth-child(3)");
-    const GLAS_price = await glasWrapper.$eval('.fp_article_price', (el) => el.innerText);
+    let GLAS_price = await glasWrapper.$eval('.fp_article_price', (el) => el.innerText);
+
+    // convert price strings to floats
+    PET_price = PET_price.replace(",", "."); PET_price.replace("€", "");
+    PET_price = parseFloat(PET_price);
+
+    GLAS_price = GLAS_price.replace(",", "."); GLAS_price.replace("€", "");
+    GLAS_price = parseFloat(GLAS_price);
 
     console.log("Glas price: " + GLAS_price, "Pet price: " + PET_price);
 

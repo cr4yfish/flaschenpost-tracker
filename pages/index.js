@@ -12,8 +12,9 @@ export default function Home({ PET_price, GLAS_price }) {
       </Head>
 
       <main className={styles.main}>
-        <h1>Pet price: {PET_price}</h1>
-        <h1>Glas price: {GLAS_price}</h1>
+      <h2>Vilsa</h2>
+        <h1>Pet price: {PET_price}€</h1>
+        <h1>Glas price: {GLAS_price}€</h1>
         
       </main>
 
